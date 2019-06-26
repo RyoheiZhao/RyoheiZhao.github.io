@@ -48,7 +48,7 @@ tags:
 执行以下命令，来安装 hexo:
 
 ```bash
-cnpm isntall -g hexo-cli
+cnpm install -g hexo-cli
 ```
 
 安装完成后可以用 `hexo -v` 命令来查看 hexo 的版本以及依赖的软件包。
@@ -68,6 +68,7 @@ mkdir -p ./my_blog
 cd ./my_blog
 hexo init
 ```
+<!-- more -->
 
 ## MacOS 环境
 
