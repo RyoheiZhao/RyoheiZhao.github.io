@@ -92,9 +92,7 @@ MacOS 自带一些常用软件比如 git,python,ruby 等，因此使用 homebrew
 ```bash
 brew install git node.js
 ```
-
-**安装过程图**
-
+git 和 node.js 所依赖的软件包会在安装过程中一并安装。
 
 ### 安装 hexo
 
@@ -208,3 +206,123 @@ hexo s #本地预览，如果确认没问题可跳过这步直接部署到远端
 hexo d #hexo-deployer-git 执行自动部署的命令
 ```
 
+### 更换主题
+
+hexo 更换主题比较简便，下载喜欢的主题，将其放置到博客根目录下的 `themes` 文件夹中，并修改根目录下的 `_config.yml` 文件 `theme` 设定，即可切换主题。
+
+推荐 [hexo-theme-melody](https://molunerfinn.com/hexo-theme-melody-doc/zh-Hans/#特性) 主题，该项目首页中有较详尽帮助文档，跟着一步步做就好，我只挑几个要点进行说明：
+
+- 安装 melody 主题：
+  ```bash
+  cd ~/my_blog #切换到博客根目录
+  git clone -b master https://github.com/Molunerfinn/hexo-theme-melody themes/melody
+  ```
+
+- 安装 hexo 插件
+  
+  使用 melody 主题需要安装 `pug` 和 `stylus` 渲染器，注意**在博客根目录下安装**，安装过程中会提示警告之类的信息，忽略即可。
+  
+  ```bash
+  npm install hexo-renderer-jade hexo-renderer-stylus --save
+  ```
+  
+
+- 配置**博客根目录**中的 `_config.yml`, 修改 `theme` 设定，如下：
+  
+  ```yml
+  theme: melody #注意冒号之后要键入一个空格
+  ```
+
+- melody 主题配置
+  
+  在 melody 主题目录 `你的博客目录/themes/melody/` 中找到 `_config.yml` 文件，将其拷贝到 `你的博客目录/source/_data/` 中，并命名为 `melody.yml`.
+  
+  如果没有 `_data` 这个目录，手动建立即可。
+
+  ```bash
+  cd ~/my_blog
+  mkdir -p ./source/_data/ #手动建立 _data 目录
+  cp ./themes/melody/_config.yml ./source/_data/melody.yml
+  ```
+
+以上是将博客主题替换为 melody 的步骤，**注意**在更换主题之前要执行 `hexo clean` 命令，清楚之前的静态站文件。
+
+
+### 站点设置
+
+
+![site_info](https://s2.ax1x.com/2019/07/02/ZGfHa9.png)
+
+![site_info2](https://s2.ax1x.com/2019/07/02/ZJmHjs.png)
+
+`_config.yml` 站点信息等设置：
+
+```yml
+# Site
+title: RyoHei's Blog                #站点标题
+subtitle: think twice code once     #子标题
+description: Code & TF 爱好者       #站点描述
+keywords:                           #关键字
+author: RH.Zhao                     #博客作者
+language: zh-Hans                   #显示语言，默认是 en
+timezone:                           #设置时区
+
+# URL
+url: https://ryoheizhao.github.io   #http://yoursite.com
+root: /
+permalink: :id.html                 #设置生成静态站的永久链接
+permalink_defaults:
+
+```
+
+`melody.yml` menu 菜单等设置：
+
+```yml
+# Main menu navigation
+menu:
+  Home: /
+  Archives: /archives
+  Tags: /tags                   #博客根目录/source/tags/index.md 需要手动创建
+  Categories: /categories       #博客根目录/source/categories/index.md 需要手动创建
+
+# Highlight theme
+# ---------------
+highlight_theme: default        #melody自带的代码高亮有5种：default darker pale night light ocean
+
+# code_word_wrap: true or false
+code_word_wrap: ture            #代码换行
+
+top_img: true # false or url of img
+top_img: https://xxxxx.jpg      #顶部图的外链
+
+post_meta:
+  date_type: updated            #created or updated 文章顶部日期是创建日或者更新日
+  categories: true              #true or false 是否显示分类
+  tags: true                    #true or false 是否显示标签
+
+toc:
+  enable: true                  #是否显示文章侧边栏的目录
+  number: true                  #是否显示文章侧边栏目录的数字章节
+
+post_copyright:                 #关于文章版权设置
+  enable: true
+  license: CC BY-NC-SA 4.0
+  license_url: https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+# Post info settings
+# ---------------
+avatar: https://xxx.jpg         #头像外链
+
+follow:                         #Follow Me 按钮
+  enable: true
+  url: 'http://ryoheizhao.github.io/'
+  text: 'Follow Me'
+
+# Footer Settings
+# ---------------
+since: 2019                     #博客年份
+
+#footer_custom_text:            #自定义页脚，写一些备案信息、声明信息等
+```
+
+通过上述的配置，你的博客基本上成型了，之后我会再补充关于文章统计、评论留言等相关插件的安装和配置。

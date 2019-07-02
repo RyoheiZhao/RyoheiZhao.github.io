@@ -16,7 +16,7 @@ timezone:
 url: https://ryoheizhao.github.io   #http://yoursite.com
 root: /
 permalink: :id.html
-permalink_defaults: 
+permalink_defaults:
 
 # Directory
 source_dir: source

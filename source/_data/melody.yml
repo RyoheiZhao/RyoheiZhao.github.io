@@ -132,7 +132,7 @@ avatar: https://s2.ax1x.com/2019/06/21/ZSeOjH.jpg
 top_img: true # false or url of img
 # top_img: https://xxxxx.jpg
 post_meta:
-  date_type: created # created or updated
+  date_type: updated # created or updated
   categories: true
   tags: true
 
@@ -271,10 +271,10 @@ canvas_ribbon:
 #Name: url
 
 # Follow Me Button
-# follow:
-#   enable: true
-#   url: ''
-#   text: ''
+follow:
+   enable: true
+   url: 'https://github.com/RyoheiZhao/'
+   text: 'Follow Me'
 
 # Ads
 # ---------------
@@ -284,7 +284,7 @@ google_adsense:
   js: //pagead2.googlesyndication.com/pagead/js/adsbygoogle.js
   client: ca-pub-...........
   enable_page_level_ads: true
-  
+
 
 # Google Webmaster tools verification setting
 # See: https://www.google.com/webmasters/
