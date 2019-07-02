@@ -132,81 +132,7 @@ hexo clean
 ```
 
 
-## github Pages 部署
-
-### 注册/登录 github
-
-申请注册或登录 [github](https://github.com/),过程跟简单，注意选择免费用户就好，不赘述了。
-
-### 创建 User Pages repository
-
-搭建个人博客使用到 github 的 User Pages 功能，需要注意的是此类型仓库名的命名，要与你的 github 账户名保持一致。
-
-**补图**
-
-### 配置 SSH 密钥
-
-配置 SSH 密钥可以免去每次提交都要输入 github 用户名和密码。
-
-如果你之前设置过 ssh 密钥，那么执行以下命令来进行查看：
-
-```bash
-cat ~/.ssh/id_rsa.pub
-```
-
-如果提示没有此路径或文件，那么说明你还没有配置过 SSH 密钥，那么执行下面的命令来生成：
-
-```bash
-ssh-keygen -t rsa -C "youremail@example.com"
-```
-
-测试链接：
-
-```bash
-ssh -T git@github.com
-```
-
-![ssh1](https://s2.ax1x.com/2019/06/25/ZV4TCn.png)
-
-
-测试成功后，我们将 SSH 密钥添加到你的 github SSH 设定中，流程参考下图：
-
-
-![ssh2](https://s2.ax1x.com/2019/06/25/ZVfu80.png)
-
-
-### 本地博客配置
-
-编辑根目录下的 '_config.yml' 文件，修改 deploy 参数下的内容如下：
-
-```bash
-...
-# Deployment
-## Docs: https://hexo.io/docs/deployment.html
-deploy:
-  type: git
-  repo: https://github.com/yourname/yourname.github.io #这里填你的仓库地址
-  branch: master #分支选为 master, 不填的话默认也是 master 分支
-```
-
-之后，我们来安装 hexo 自动部署工具：
-
-```bash
-npm install --save hexo-deployer-git #在博客根目录下执行此命令
-```
-
-![hexo-deployer-git](https://s2.ax1x.com/2019/06/25/ZVIOk4.png)
-
-以后我们编辑好文章后，就可以自动将其发布到 github 上了，命令执行顺序如下：
-
-```bash
-hexo clean #先清理之前生成的静态网站文件
-hexo g #重新生成静态站
-hexo s #本地预览，如果确认没问题可跳过这步直接部署到远端服务器
-hexo d #hexo-deployer-git 执行自动部署的命令
-```
-
-### 更换主题
+## 更换博客主题
 
 hexo 更换主题比较简便，下载喜欢的主题，将其放置到博客根目录下的 `themes` 文件夹中，并修改根目录下的 `_config.yml` 文件 `theme` 设定，即可切换主题。
 
@@ -245,10 +171,10 @@ hexo 更换主题比较简便，下载喜欢的主题，将其放置到博客根
   cp ./themes/melody/_config.yml ./source/_data/melody.yml
   ```
 
-以上是将博客主题替换为 melody 的步骤，**注意**在更换主题之前要执行 `hexo clean` 命令，清楚之前的静态站文件。
+以上是将博客主题替换为 melody 的步骤，**注意**在更换主题之前要执行 `hexo clean` 命令，清除之前生成的静态站文件。
 
 
-### 站点设置
+## 博客信息设置
 
 
 ![site_info](https://s2.ax1x.com/2019/07/02/ZGfHa9.png)
@@ -326,3 +252,124 @@ since: 2019                     #博客年份
 ```
 
 通过上述的配置，你的博客基本上成型了，之后我会再补充关于文章统计、评论留言等相关插件的安装和配置。
+
+
+## github Pages 部署
+
+### 注册/登录 github
+
+申请注册或登录 [github](https://github.com/),过程跟简单，注意选择免费用户就好，不赘述了。
+
+### 创建 User Pages repository
+
+搭建个人博客使用到 github 的 User Pages 功能，需要注意的是此类型仓库名的命名，要与你的 github 账户名保持一致。
+
+**补图**
+
+### 配置 SSH 密钥
+
+配置 SSH 密钥可以免去每次提交都要输入 github 用户名和密码。
+
+如果你之前设置过 ssh 密钥，那么执行以下命令来进行查看：
+
+```bash
+cat ~/.ssh/id_rsa.pub
+```
+
+如果提示没有此路径或文件，那么说明你还没有配置过 SSH 密钥，那么执行下面的命令来生成：
+
+```bash
+ssh-keygen -t rsa -C "youremail@example.com"
+```
+
+测试链接：
+
+```bash
+ssh -T git@github.com
+```
+
+![ssh1](https://s2.ax1x.com/2019/06/25/ZV4TCn.png)
+
+
+测试成功后，我们将 SSH 密钥添加到你的 github SSH 设定中，流程参考下图：
+
+
+![ssh2](https://s2.ax1x.com/2019/06/25/ZVfu80.png)
+
+
+### 本地博客配置
+
+编辑根目录下的 '_config.yml' 文件，修改 deploy 参数下的内容如下：
+
+```bash
+...
+# Deployment
+## Docs: https://hexo.io/docs/deployment.html
+deploy:
+  type: git
+  repo: https://github.com/yourname/yourname.github.io #这里填你的仓库地址
+  branch: master #分支选为 master, 不填的话默认也是 master 分支
+```
+
+之后，我们来安装 hexo 自动部署工具：
+
+```bash
+npm install --save hexo-deployer-git #在博客根目录下执行此命令
+```
+
+![hexo-deployer-git](https://s2.ax1x.com/2019/06/25/ZVIOk4.png)
+
+以后我们编辑好文章后，就可以自动将其发布到 github 上了，命令执行顺序如下：
+
+```bash
+hexo clean #先清理之前生成的静态网站文件
+hexo g #重新生成静态站
+hexo s #本地预览，如果确认没问题可跳过这步直接部署到远端服务器
+hexo d #hexo-deployer-git 执行自动部署的命令
+```
+
+## 多台电脑管理博客
+
+笔电再轻也有分量，像我平时又爱骑个单车，只能在 mbp 上写博客发博客就太束手束脚了，咋办？
+
+`hexo d` 命令将生成的静态页面上传至 github 分支中，不如我们把 hexo 的工作目录也交给 git 托管，随时随地拉取和上传岂不美滋滋，下面我们一步步来实现。
+
+### git 初始化 hexo 工作目录
+
+**注意**这里有个前提，如果你在使用类似 melody next yilia 等主题时，要取消其主题目录的 git 跟踪：
+
+```bash
+cd 你的博客目录/themes/melody
+rm -rf .git #或者把 .git 目录拷贝到别处再删除
+```
+
+接下来初始化 hexo 工作目录：
+
+```bash
+cd 你的博客目录/
+git init
+git checkout -b hexo
+git add .
+git commit -m 'git init'
+```
+
+提交到 github 仓库：
+
+```bash
+git remote add origin git@github.com:yourname/yourname.github.io.git
+git push -u origin hexo:hexo
+```
+
+### 在另一台主机部署博客
+
+拉取分支：
+
+```bash
+git clone -b hexo git@github.com:yourname/yourname.github.io.git ~/my_blog
+```
+
+hexo 初始化：
+
+最初我直接切换到博客目录并执行 `hexo init`, 结果报错并提示执行 `npm install hexo` 命令。奇怪为啥还要我安装一遍 hexo, mbp
+
+
