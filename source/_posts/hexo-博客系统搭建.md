@@ -362,7 +362,7 @@ git push -u origin hexo:hexo
 
 ### 在另一台主机部署博客
 
-拉取分支：
+拉取分支：（我是从 github 拉取到我的 mbp,以下的截图来自 Mac 终端）
 
 ```bash
 git clone -b hexo git@github.com:yourname/yourname.github.io.git ~/my_blog
@@ -370,6 +370,41 @@ git clone -b hexo git@github.com:yourname/yourname.github.io.git ~/my_blog
 
 hexo 初始化：
 
-最初我直接切换到博客目录并执行 `hexo init`, 结果报错并提示执行 `npm install hexo` 命令。奇怪为啥还要我安装一遍 hexo, mbp
+最初我直接切换到博客目录并执行 `hexo init`, 结果报错,见下图：
 
+![hexo_init](https://s2.ax1x.com/2019/07/03/ZY6dvF.png)
+
+根据提示执行 `npm install hexo` 命令：
+
+![install_hexo](https://s2.ax1x.com/2019/07/03/ZY60u4.png)
+
+顺便把 npm 更新了： `npm install -g npm`
+
+![update_npm](https://s2.ax1x.com/2019/07/03/ZY6agU.png)
+
+安装依赖的包： `npm install`
+
+![npm_install](https://s2.ax1x.com/2019/07/03/ZY6Db9.png)
+
+安装 hexo 依赖的插件（包括 hexo-melody-theme 依赖的渲染插件）：
+
+```bash
+npm install hexo-deployer-git #安装部署插件
+npm install hexo-renderer-jade hexo-renderer-stylus --save #安装 pug stylus 渲染插件
+```
+
+![hexo-plugin](https://s2.ax1x.com/2019/07/03/ZY6BDJ.png)
+
+这样本地的博客写作环境便部署完成了。
+
+### 写作步骤
+
+- `git pull` 拉取最新的 hexo 分支
+- `hexo new post 'title'` 新建文章
+- `hexo clean` 清理之前的静态站文件
+- `hexo g` 重新生成静态站文件
+- `git add .`
+- `git commit -m "message"`
+- `git push` 推送到 hexo 分支
+- `hexo d` 推送到 master 分支
 
