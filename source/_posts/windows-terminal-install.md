@@ -1,5 +1,5 @@
 ---
-title: Win10 的 Linux 子系统 (Windows Terminal 预览版).md
+title: Win10 的 Linux 子系统 (Windows Terminal 预览版)
 date: 2019-07-04 21:45:23
 categories:
     - 笔记总结
@@ -7,8 +7,6 @@ tags:
     - wsl
     - windows terminal
 ---
-
-# Win10 的 Linux 子系统（Windows Terminal 预览版）
 
 ## 安装 Ubuntu
 
