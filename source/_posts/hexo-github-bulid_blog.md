@@ -145,16 +145,16 @@ hexo 更换主题比较简便，下载喜欢的主题，将其放置到博客根
   ```
 
 - 安装 hexo 插件
-  
+
   使用 melody 主题需要安装 `pug` 和 `stylus` 渲染器，注意**在博客根目录下安装**，安装过程中会提示警告之类的信息，忽略即可。
-  
+
   ```bash
   npm install hexo-renderer-jade hexo-renderer-stylus --save
   ```
-  
+
 
 - 配置**博客根目录**中的 `_config.yml`, 修改 `theme` 设定，如下：
-  
+
   ```yml
   theme: melody #注意冒号之后要键入一个空格
   ```
