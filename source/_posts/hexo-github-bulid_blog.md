@@ -28,6 +28,128 @@ tags:
 
 - 配置 git bash
 
+  闲话少叙直奔主题，git bash 基于 mintty, 默认的配色、命令提示符等有点**丑**，我们来改进一下。
+  
+  - 修改命令提示符：
+
+    ```bash
+    cd /etc/profile.d/
+    sudo cp git-prompt.sh git-promppt.sh.bak #修改之前备份一下
+    vi git-prompt.sh
+    ```
+    对照以下内容进行修改：
+
+    ```bash
+    if test -f /etc/profile.d/git-sdk.sh
+    then
+      TITLEPREFIX=SDK-${MSYSTEM#MINGW}
+    else
+      TITLEPREFIX=$MSYSTEM
+    fi
+
+    if test -f ~/.config/git/git-prompt.sh
+    then
+      . ~/.config/git/git-prompt.sh
+    else
+      PS1='\[\033]0;Bash\007\]'      # 窗口标题
+      PS1="$PS1"'\n'                 # 换行
+      PS1="$PS1"'\[\033[32;1m\]'     # 高亮绿色
+      PS1="$PS1"'➜  '               # unicode 字符，右箭头
+      PS1="$PS1"'\[\033[33;1m\]'     # 高亮黄色
+      PS1="$PS1"'\W'                 # 当前目录
+      if test -z "$WINELOADERNOEXEC"
+      then
+        GIT_EXEC_PATH="$(git --exec-path 2>/dev/null)"
+        COMPLETION_PATH="${GIT_EXEC_PATH%/libexec/git-core}"
+        COMPLETION_PATH="${COMPLETION_PATH%/lib/git-core}"
+        COMPLETION_PATH="$COMPLETION_PATH/share/git/completion"
+        if test -f "$COMPLETION_PATH/git-prompt.sh"
+        then
+          . "$COMPLETION_PATH/git-completion.bash"
+          . "$COMPLETION_PATH/git-prompt.sh"
+          PS1="$PS1"'\[\033[31m\]'   # 红色
+          PS1="$PS1"'`__git_ps1`'    # git 插件
+        fi
+      fi
+      PS1="$PS1"'\[\033[36m\] '      # 青色
+    fi
+
+    MSYS2_PS1="$PS1"
+    # Evaluate all user-specific Bash completion scripts (if any)
+    if test -z "$WINELOADERNOEXEC"
+    then
+            for c in "$HOME"/bash_completion.d/*.bash
+            do
+                    # Handle absence of any scripts (or the folder) gracefully
+                    test ! -f "$c" ||
+                    . "$c"
+            done
+    fi
+    ```
+  - 修改主题：
+
+    编辑 `.minttyrc` 文件，如没有可手动创建该文件：
+
+    ```bash
+    touch .minttyrc #手动创建配置文件
+    vi .minttyrc
+    ```
+
+    ```bash
+    FontHeight=11
+    Transparency=low
+    FontSmoothing=default
+    Locale=C
+    Charset=UTF-8
+    Columns=88
+    Rows=26
+    OpaqueWhenFocused=no
+    Scrollbar=none
+    Language=zh_CN
+    ForegroundColour=131,148,150
+    BackgroundColour=0,43,54
+    CursorColour=220,130,71
+    BoldBlack=128,128,128
+    Red=255,64,40
+    BoldRed=255,128,64
+    Green=64,200,64
+    BoldGreen=64,255,64
+    Yellow=190,190,0
+    BoldYellow=255,255,64
+    Blue=0,128,255
+    BoldBlue=128,160,255
+    Magenta=211,54,130
+    BoldMagenta=255,128,255
+    Cyan=64,190,190
+    BoldCyan=128,255,255
+    White=200,200,200
+    BoldWhite=255,255,255
+    BellTaskbar=no
+    Term=xterm
+    FontWeight=400
+    FontIsBold=no
+    ClicksPlaceCursor=yes
+    ```
+
+    字体我是用的 [更纱黑体](https://github.com/be5invis/Sarasa-Gothic)，下面是效果图。
+
+    ![效果图](https://s2.ax1x.com/2019/07/08/ZrgoEq.png)
+
+
+
+  - 修改 VS Code 默认终端：
+
+    在 `settings.json` 中添加以下配置：
+
+    ```json
+    "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
+    "terminal.integrated.shellArgs.windows": ["--login", "-i"],
+    ```
+    ![效果图](https://s2.ax1x.com/2019/07/08/ZrRvA1.png)
+
+  - tum 打造高效终端
+
+    待更新...
 
 ### 安装 node.js
 
@@ -408,3 +530,13 @@ npm install hexo-renderer-jade hexo-renderer-stylus --save #安装 pug stylus �
 - `git push` 推送到 hexo 分支
 - `hexo d` 推送到 master 分支
 
+## 参考
+
+**感谢他们的付出和贡献**
+
+[手把手教你从0开始搭建自己的个人博客 |无坑版视频教程| hexo](https://www.bilibili.com/video/av44544186?from=search&seid=7561138139683177649)
+[Hexo多台电脑更新博客](mcbill.cn/2018/06/22/Hexo多台电脑更新博客/)
+[【持续更新】最全Hexo博客搭建+主题优化+插件配置+常用操作+错误分析](https://juejin.im/post/5bebfe51e51d45332a456de0)
+[为 win10 打造 Linux 终端（非 wsl）](https://juejin.im/post/5bd5a08cf265da0add520772)
+[快速、简洁且高效的博客框架](https://hexo.io/zh-cn/)
+[hexo-theme-melody](https://molunerfinn.com/hexo-theme-melody-doc/)
