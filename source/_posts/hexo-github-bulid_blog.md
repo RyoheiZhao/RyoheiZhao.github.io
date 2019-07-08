@@ -160,9 +160,9 @@ hexo 更换主题比较简便，下载喜欢的主题，将其放置到博客根
   ```
 
 - melody 主题配置
-  
+
   在 melody 主题目录 `你的博客目录/themes/melody/` 中找到 `_config.yml` 文件，将其拷贝到 `你的博客目录/source/_data/` 中，并命名为 `melody.yml`.
-  
+
   如果没有 `_data` 这个目录，手动建立即可。
 
   ```bash
