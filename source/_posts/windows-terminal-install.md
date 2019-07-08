@@ -24,6 +24,8 @@ win10 版本：win + r 打开运行并输入 `winver`, 我的是 1903（OS 内�
 
 ![开发人员模式](https://s2.ax1x.com/2019/07/04/ZUagQH.png)
 
+<!--- more --->
+
 在 Microsoft Store 中搜索 **ubuntu** 选中并安装：
 
 ![ubuntu](https://s2.ax1x.com/2019/07/04/ZUacSe.png)
@@ -36,7 +38,6 @@ win10 版本：win + r 打开运行并输入 `winver`, 我的是 1903（OS 内�
 cat /etc/issue
 Ubuntu 18.04.2 LTS \n \l
 ```
-<!--- more --->
 
 ### 替换源镜像
 
