@@ -29,7 +29,7 @@ tags:
 - 配置 git bash
 
   闲话少叙直奔主题，git bash 基于 mintty, 默认的配色、命令提示符等有点**丑**，我们来改进一下。
-  
+
   - 修改命令提示符：
 
     ```bash
@@ -37,6 +37,8 @@ tags:
     sudo cp git-prompt.sh git-promppt.sh.bak #修改之前备份一下
     vi git-prompt.sh
     ```
+<!-- more -->
+
     对照以下内容进行修改：
 
     ```bash
@@ -190,7 +192,6 @@ mkdir -p ./my_blog
 cd ./my_blog
 hexo init
 ```
-<!-- more -->
 
 ## MacOS 环境
 
