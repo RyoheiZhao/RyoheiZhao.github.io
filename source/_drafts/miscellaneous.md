@@ -37,3 +37,56 @@ tags:
     %s/^M//g
     #以上两条命令都可以实现
     ```
+
+## VS Code
+
+### code runner
+
+> command 'code-runner.run' not found
+
+看看 vscode 的默认终端配置，或者 update 一下，不需要注销掉 `codeManger.js` 中的第 12 行代码。
+
+贴一下我工位上的 win10 vscode 的 `settings.json` 文件：
+
+```json
+{
+    "workbench.colorTheme": "Monokai Dimmed",
+    "workbench.iconTheme": "material-icon-theme",
+    "editor.renderIndentGuides": false,
+    "editor.fontFamily": "'Sarasa Term SC',Consolas, 'Courier New', monospace",
+    "python.pythonPath": "python3",
+    "markdown-preview-enhanced.mermaidTheme": "default",
+    "markdown-preview-enhanced.codeBlockTheme": "atom-material.css",
+    "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
+    "terminal.integrated.shellArgs.windows": ["--login", "-i"],
+    "code-runner.executorMap": {
+        "python": "set PYTHONIOENCODING=utf-8 && python"
+    }
+}
+```
+
+其中，我将 git bash 设置为了默认终端：
+
+```json
+"terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
+"terminal.integrated.shellArgs.windows": ["--login", "-i"],
+```
+
+code runner 执行 python 脚本出现中文乱码的解决办法：
+
+- 使用 utf-8 编码
+  ```json
+  "code-runner.executorMap": {
+        "python": "set PYTHONIOENCODING=utf-8 && python"
+    }
+  ```
+
+- 输出到设置好的终端
+
+  在 `settings.json` 中加入下面这句：
+  ```json
+  "code-runner.runInTerminal": true,
+  "code-runner.executorMap": {
+        "python": "python"
+    }
+  ```
