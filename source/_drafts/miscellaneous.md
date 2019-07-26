@@ -90,3 +90,43 @@ code runner 执行 python 脚本出现中文乱码的解决办法：
         "python": "python"
     }
   ```
+
+## win10 下部署 vue-cli
+
+### 关于 node 版本管理
+
+在 win 端执行 `npm install -g n`,报错：
+
+```powershell
+PS C:\Users\zlp-1> npm i -g n
+npm ERR! code EBADPLATFORM
+npm ERR! notsup Unsupported platform for n@5.0.1: wanted {"os":"!win32","arch":"any"} (current: {"os":"win32","arch":"x64"}) npm ERR! notsup Valid OS:    !win32
+npm ERR! notsup Valid Arch:  any
+npm ERR! notsup Actual OS:   win32
+npm ERR! notsup Actual Arch: x64
+npm ERR! A complete log of this run can be found in:
+npm ERR! C:\Users\zlp-1\AppData\Roaming\npm-cache\_logs\2019-07-24T06_34_25_801Z-debug.log
+```
+
+原因是 n 这个组件不支持 win 平台，如果你需要多版本的 node 可以使用 nvm，目前 win10 安装的是最新的，所以暂时不考虑版本选择或者更新。
+
+### 安装 vue-cli
+
+执行命令 `npm install -g @vue/cli`
+
+```powershell
+npm install -g @vue/cli
+...
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.9 (node_modules\@vue\cli\node_modules\fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.2.9: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+
++ @vue/cli@3.9.3
+added 840 packages from 545 contributors in 253.939s
+```
+
+这是 warning 错误，是因为 mac下需要 fsevents，这里是在 windows 环境，所以可以忽略这个警告，对你没什么影响的。
+
+```powershell
+vue -V #查看版本信息
+3.9.3
+```
