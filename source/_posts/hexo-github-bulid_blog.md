@@ -37,7 +37,7 @@ tags:
     sudo cp git-prompt.sh git-promppt.sh.bak #修改之前备份一下
     vi git-prompt.sh
     ```
-<!-- more -->
+    <!-- more -->
 
     对照以下内容进行修改：
 
